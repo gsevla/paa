@@ -1,10 +1,6 @@
-# bolos da maria - uri 1608
-
 
 while(True):
     T = int(input())
-
-
 
     for i in range(T):
 
@@ -24,17 +20,16 @@ while(True):
 
             Q = DB.pop(0)
             j = 1
+
+            CUSTO_AUX = 0
             while j < Q*2:
                 # print("j: {} | DB[j-1]: {} | DB[j]: {}".format(j, DB[j-1], DB[j]))
-                CUSTO_BOLOS.append(DB[j-1]*DB[j])
+                # print("{} * {} = {}".format(DB[j], I_VALUES[DB[j-1]], (DB[j]*I_VALUES[DB[j-1]])))
+                CUSTO_AUX += I_VALUES[DB[j-1]]*DB[j]
                 j += 2
+            CUSTO_BOLOS.append(CUSTO_AUX)
             
             # print('k: {} | I: {}'.format(k, I))
                 
         # print('saiu do loop')
-
-        # B_DESC.append(DB)
-        # VAL = I_VALUES[1]*
-        # CUSTO_BOLOS.append()
-
-        # for j in range(DB[0]):
+        print("R >> {}".format(int(D/min(CUSTO_BOLOS))))
