@@ -30,10 +30,10 @@ int main() {
         int res = 0;
 
         for(int i = 0; i < N; ++i) {
-            if(res - DP[i].first < 0) {
-                res += DP[i].first + DP[i].second;
-            } else {
+            if((res - DP[i].first) >= 0) {
                 res += DP[i].second;
+            } else {
+                res += DP[i].second + (DP[i].first-res);
             }
         }
 
