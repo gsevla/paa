@@ -3,6 +3,7 @@
 using namespace std;
 
 
+
 int main() {
 
     int N, D;
@@ -15,51 +16,39 @@ int main() {
         // }
         // cout << endl;
 
-        char res[N-D];
         // for(int i = 0; i < N-D; ++i) {
         //     cout << i+1 << endl;
         // }
 
         // cout << '-' << ": " << '-' - '0' << endl;
                 
-        pair<int, char> aux;
-        for(int i = 0; i < D; ++i) {
-            // aux.first = N-1;
-            aux.second = max(num[0], num[N-1]);
-            // cout << aux.second << endl;
-            // cout << "i: " << i << endl;
-            for(int j = N-1; j >= 0; --j) {
-                if(num[j] == '-') {
-                    continue;
-                }
-                // cout << num[j] - '0';
-                if((num[j] - '0') <= aux.second) {
-                    // cout << "entrou: " << num[j] << endl;
-                    aux.first = j;
-                    aux.second = num[j] - '0';
-                }
+        int aux[N];
+        memset(aux, -1, sizeof aux);
+        int min_value = num[N-1] - '0';
+        // cout << min_value << endl;
+        int j = 0;
+        for(int i = N-1; i >= 0; --i) {
+            if(num[i] - '0' <= min_value) {
+                min_value = num[i] - '0';
+                aux[j] = i;
             }
-            // cout << endl;
-            // cout << num[aux.first] << endl;
-            num[aux.first] = '-';
+            ++j;
         }
 
-        // for(int i = 0; i < N; ++i) {
-        //     cout << num[i];
-        // }
-        // cout << endl;
-
-        for(int i = 0; i < D; ++i) {
-            for(int j = 0; j < N; ++j) {
-                if(num[j] != '-') {
-                    res[i] = num[j];
-                    ++i;
-                }
-            }
+        for(int i = 0; i < N; ++i) {
+            cout << aux[i] << " ";
         }
- 
-        cout << res << endl;
+        cout << endl;
+        // cout << num[aux[N-1]] << endl;
 
+        char res[N-D];
+        int auxRes = 0;
+        int auxD = 0;
+        int auxN = 1;
+        
+        for(int i = N-auxN; )
+
+        break;
     }
 
     return 0;
