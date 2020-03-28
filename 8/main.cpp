@@ -2,26 +2,21 @@
 
 using namespace std;
 
-int AUX[1001][2001];
+int aux[2001][2001];
+int it = 0;
 
-int DP_CC(int n, int p[], int c[], int t) {
-
-    if(n == 0) {
-        return 0;
-    }
-    if(t == 0) {
-        return 0;
-    }
-    if(t < 0) {
+int adh(int i, int n, int v, int C[], int V[]) {
+    if (i == n || v == 0) return 0;
+    
+    if (v < 0)
         return INT_MIN;
-    }
 
-    if(AUX[n][t] == -1) {
-        return max(DP_CC(n-1, p, c, t), p[n] + DP_CC(n, p, c, t-c[n]));
-    }
+    if (aux[i][v] == -1)
+        aux[i][v] = max(adh(i + 1, n, v, C, V), V[i] + adh(i, n, v - C[i], C, V));
 
-    return AUX[n][t];
+    return aux[i][v];
 }
+
 
 int main() {
 
@@ -29,17 +24,25 @@ int main() {
 
     while(cin >> N >> T) {
 
-        int C[N];
-        int V[N];
+        int C[2001]; // lista de comprimentos
+        int V[2001]; // lista de valores
 
         for(int i = 0; i < N; ++i) {
             cin >> C[i] >> V[i];
         }
 
-        memset(AUX, -1, sizeof(AUX));
-        int ans = DP_CC(N, V, C, T);
-        
-        cout << ans << endl;
+        memset(aux, -1, sizeof aux);
+
+        int res = adh(it, N, T, C, V);
+
+        // for(int i = 0; i < T; ++i) {
+        //     for(int j = 0; j < T; ++j) {
+        //         cout << " " << aux[i][j];
+        //     }
+        //     cout << endl;
+        // }
+
+        cout << res << endl;
 
     }
 
